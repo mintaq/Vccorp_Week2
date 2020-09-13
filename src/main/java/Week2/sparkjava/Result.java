@@ -6,7 +6,7 @@ public class Result {
 
 	public Result(String k) {
 		this.setKey(k);
-		
+
 		int n = Integer.parseInt(key);
 		this.squareResult = n*n;
 	}

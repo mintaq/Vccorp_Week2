@@ -17,9 +17,9 @@ public class SparkMain {
 
 		get("/prime", (req, res) -> {
 
-//			int n = Integer.parseInt(req.queryParams(queryParams.iterator().next()));
-//			return n * n;
-
+//			Result n = new Result((req.queryParams("n")));
+//			return n.getSquare();
+//
 			Result n = getResultUsingGuava(req.queryParams("n"));
 			return n.getSquare();
 		});

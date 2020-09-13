@@ -1,0 +1,29 @@
+package week2.sparkjava;
+
+import static spark.Spark.*;
+import java.util.concurrent.ExecutionException;
+import com.google.common.cache.*;
+
+public class SparkTest {
+	private static Result getResultUsingGuava(String id) throws ExecutionException {
+		LoadingCache<String, Result> cache = ResultCacheLoader.getLoadingCache();
+		System.out.println("Cache Size:" + cache.size());
+		return cache.get(id);
+	}
+
+	public static void main(String[] args) {
+		port(8080);
+		get("/hello", (req, res) -> "Hello");
+
+		get("/prime", (req, res) -> {
+
+//			int n = Integer.parseInt(req.queryParams(queryParams.iterator().next()));
+//			return n * n;
+
+			Result n = getResultUsingGuava(req.queryParams("n"));
+			return n.getSquare();
+		});
+
+	}
+
+}
